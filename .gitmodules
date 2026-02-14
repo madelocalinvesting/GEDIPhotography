@@ -1,0 +1,4 @@
+[submodule "lovable-frontend"]
+	path = lovable-frontend
+	url = https://github.com/madelocalinvesting/gedi-photography
+	branch = main
