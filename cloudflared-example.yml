@@ -1,0 +1,8 @@
+tunnel: dev-backend
+# For a real setup, run: cloudflared tunnel create dev-backend
+# And point credentials-file to the generated JSON
+credentials-file: ./cloudflared-credentials.json
+ingress:
+  - service: http://localhost:8000
+  - service: http_status:404
+

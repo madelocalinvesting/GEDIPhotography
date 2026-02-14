@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GEDI Static HTML</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="container">
+      <h1>Static HTML Scaffold</h1>
+      <p>Minimal static page with a tiny stylesheet.</p>
+    </header>
+    <main class="container">
+      <section>
+        <h2>Links</h2>
+        <ul>
+          <li>Next.js app: <code>frontend/</code></li>
+          <li>FastAPI backend: <code>backend/app/main.py</code></li>
+        </ul>
+      </section>
+    </main>
+    <footer class="container">
+      <small>&copy; <span id="year"></span> GEDI Photography</small>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear().toString();
+    </script>
+  </body>
+  </html>
+
