@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getApiBaseUrl } from "../lib/config";
+import { apiGet } from "../lib/api";
 
 export default function HomePage() {
   const [time, setTime] = useState<string>(new Date().toLocaleTimeString());
@@ -13,11 +14,9 @@ export default function HomePage() {
     const controller = new AbortController();
     const run = async () => {
       try {
-        const res = await fetch(`${getApiBaseUrl()}/health`, {
+        const data = await apiGet<{ status: string; service: string }>("/health", {
           signal: controller.signal
         });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
         setBackendStatus(`${data.status} (${data.service})`);
       } catch (err: unknown) {
         const message = err instanceof Error ? err.message : "Unknown error";

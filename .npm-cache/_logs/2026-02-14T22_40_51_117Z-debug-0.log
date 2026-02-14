@@ -1,0 +1,19 @@
+0 verbose cli /Users/gerardlozano/.nvm/versions/node/v22.18.0/bin/node /Users/gerardlozano/.nvm/versions/node/v22.18.0/bin/npm
+1 info using npm@10.9.3
+2 info using node@v22.18.0
+3 silly config load:file:/Users/gerardlozano/.nvm/versions/node/v22.18.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/gerardlozano/GEDIPhotography/.npmrc
+5 silly config load:file:/Users/gerardlozano/.npmrc
+6 silly config load:file:/Users/gerardlozano/.nvm/versions/node/v22.18.0/etc/npmrc
+7 verbose title npm install
+8 verbose argv "install" "--no-fund" "--no-audit" "--cache" "./.npm-cache"
+9 verbose logfile logs-max:10 dir:/Users/gerardlozano/GEDIPhotography/.npm-cache/_logs/2026-02-14T22_40_51_117Z-
+10 verbose logfile /Users/gerardlozano/GEDIPhotography/.npm-cache/_logs/2026-02-14T22_40_51_117Z-debug-0.log
+11 silly logfile done cleaning log files
+12 verbose cwd /Users/gerardlozano/GEDIPhotography
+13 verbose os Darwin 24.6.0
+14 verbose node v22.18.0
+15 verbose npm  v10.9.3
+16 verbose exit 1
+17 verbose code 1
+18 error A complete log of this run can be found in: /Users/gerardlozano/GEDIPhotography/.npm-cache/_logs/2026-02-14T22_40_51_117Z-debug-0.log

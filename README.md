@@ -10,6 +10,17 @@ This repo contains three minimal apps:
 - Node.js 18+ and npm
 - Python 3.10+ (or a virtualenv/conda environment)
 
+### One-command local dev (backend + frontend + lovable)
+From the repo root:
+```bash
+npm install        # installs root dev tool 'concurrently'
+npm run dev        # runs: backend (auto-venv), frontend, lovable-frontend
+```
+Notes:
+- The backend auto-creates a virtualenv and installs deps on first run (`backend/run.py`).
+- If `lovable-frontend` needs API access from the web, start a tunnel (see below) and update envs accordingly.
+- On first run, a predev step creates missing `.env.local` files from the provided `env.local.example` files.
+
 ### Frontend (Next.js)
 1. Install dependencies:
    ```bash
@@ -56,6 +67,16 @@ Then visit `http://localhost:8080`.
   - `NEXT_PUBLIC_API_BASE_URL = https://YOUR-PUBLIC-BACKEND-URL`
 - CORS is enabled for local dev and `*.lovable.dev` in `backend/app/main.py`.
 - Optionally connect Lovable ↔ GitHub to work from this repo: see Lovable docs: [Getting started](https://docs.lovable.dev/introduction/getting-started), [GitHub integration](https://docs.lovable.dev/integrations/github), [Self‑hosting tips](https://docs.lovable.dev/tips-tricks/self-hosting).
+
+#### Local dev for Lovable submodule
+If you added the Lovable GitHub repo here as a submodule under `lovable-frontend/`:
+```bash
+cd lovable-frontend
+npm install        # or: bun install / pnpm install
+npm run dev        # or: bun dev / pnpm dev
+```
+Then open the printed local URL (typically `http://localhost:5173` for Vite).
+Make sure your backend is running and that your env points to it (either local or via tunnel).
 
 ### Tunneling your local backend (for Lovable to reach it)
 Option A — ngrok:

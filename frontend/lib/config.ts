@@ -1,8 +1,20 @@
-export function getApiBaseUrl(): string {
-  const fromEnv = process.env.NEXT_PUBLIC_API_BASE_URL;
-  if (fromEnv && fromEnv.length > 0) {
-    return fromEnv;
+export function getRequiredEnv(name: string): string {
+  const value = process.env[name];
+  if (!value || value.trim().length === 0) {
+    throw new Error(`Missing required environment variable: ${name}`);
   }
-  return "http://localhost:8000";
+  return value.trim();
+}
+
+export function getApiBaseUrl(): string {
+  const baseUrl = getRequiredEnv("NEXT_PUBLIC_API_BASE_URL");
+  try {
+    // Validate it's an absolute URL
+    // eslint-disable-next-line no-new
+    new URL(baseUrl);
+  } catch {
+    throw new Error(`NEXT_PUBLIC_API_BASE_URL must be an absolute URL. Got: ${baseUrl}`);
+  }
+  return baseUrl;
 }
 
