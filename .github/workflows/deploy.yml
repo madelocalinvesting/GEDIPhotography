@@ -20,20 +20,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # THIS IS THE KEY: It pulls the code inside your submodules
           submodules: recursive
-          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install and Build
-        # CI=false ignores non-critical warnings that often break Lovable builds
+      - name: Force Install and Build
         run: |
           cd lovable-frontend
-          npm install
+          npm install --force
           npm run build
         env:
           CI: false
