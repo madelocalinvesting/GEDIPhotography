@@ -24,15 +24,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
-          # This tells GitHub to look in the main folder for your lock file
-          cache-dependency-path: './package-lock.json'
-
+          # We are disabling the cache entirely to stop the "Path not resolved" error
+          
       - name: Install dependencies
-        run: npm install
+        # We tell npm exactly where to find the package.json
+        run: npm install --prefix lovable-frontend
 
       - name: Build
-        run: npm run build
+        # We tell npm exactly where to build
+        run: npm run build --prefix lovable-frontend
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -40,7 +40,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # This tells GitHub where your website files are hidden after the build
+          # This is where your finished files go
           path: './lovable-frontend/dist'
 
       - name: Deploy to GitHub Pages
