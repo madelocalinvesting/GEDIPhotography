@@ -2,12 +2,13 @@
   "name": "gedi-monorepo",
   "private": true,
   "version": "0.1.0",
-  "scripts": {
+ "scripts": {
     "predev": "node scripts/ensure-envs.mjs",
     "dev:backend": "python3 backend/run.py",
     "dev:frontend": "npm --prefix frontend run dev",
     "dev:lovable": "npm --prefix lovable-frontend run dev",
-    "dev": "concurrently -k -n backend,frontend,lovable \"npm:dev:backend\" \"npm:dev:frontend\" \"npm:dev:lovable\""
+    "dev": "concurrently -k -n backend,frontend,lovable \"npm:dev:backend\" \"npm:dev:frontend\" \"npm:dev:lovable\"",
+    "build": "npm --prefix lovable-frontend run build"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
