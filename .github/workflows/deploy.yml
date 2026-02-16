@@ -19,20 +19,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # THIS IS THE KEY: It pulls the code inside your submodules
+          submodules: recursive
+          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          # We are turning OFF the cache to stop the "path not resolved" errors
-          
-      - name: Install dependencies
-        # Force npm to go inside the folder and install
-        run: npm install --prefix lovable-frontend
 
-      - name: Build
-        # Force npm to go inside the folder and build
-        run: npm run build --prefix lovable-frontend
+      - name: Install and Build
+        # CI=false ignores non-critical warnings that often break Lovable builds
+        run: |
+          cd lovable-frontend
+          npm install
+          npm run build
+        env:
+          CI: false
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -40,8 +44,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Pointing to exactly where the website files end up
-          path: './lovable-frontend/dist'
+          path: 'lovable-frontend/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
