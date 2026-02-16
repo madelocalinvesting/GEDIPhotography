@@ -15,7 +15,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,14 +24,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          # We are disabling the cache entirely to stop the "Path not resolved" error
+          # We are turning OFF the cache to stop the "path not resolved" errors
           
       - name: Install dependencies
-        # We tell npm exactly where to find the package.json
+        # Force npm to go inside the folder and install
         run: npm install --prefix lovable-frontend
 
       - name: Build
-        # We tell npm exactly where to build
+        # Force npm to go inside the folder and build
         run: npm run build --prefix lovable-frontend
 
       - name: Setup Pages
@@ -40,7 +40,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # This is where your finished files go
+          # Pointing to exactly where the website files end up
           path: './lovable-frontend/dist'
 
       - name: Deploy to GitHub Pages
